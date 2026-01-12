@@ -1,21 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import type { PortfolioItem } from '../types/portfolio';
 
-// Types
-type MediaType = 'image' | 'video';
-
-interface PortfolioItem {
-    id: string;
-    src: string;
-    type: MediaType;
-    title: string;
-    scope: string[];
-    category: string[];
-    industry: string[];
-    size: 'regular' | 'wide' | 'tall' | 'large'; // Added size for masonry
-}
-
-// Helper to format filenames into titles
 const formatTitle = (path: string) => {
     const filename = path.split('/').pop()?.split('.')[0] || '';
     return filename.replace(/[-_]/g, ' ').replace(/([A-Z])/g, ' $1').trim();
@@ -23,9 +9,8 @@ const formatTitle = (path: string) => {
 
 const Porto: React.FC = () => {
     const [items, setItems] = useState<PortfolioItem[]>([]);
-    const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+    const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
 
-    // Filters State
     const [selectedScopes, setSelectedScopes] = useState<string[]>([]);
     const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
     const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
@@ -38,13 +23,10 @@ const Porto: React.FC = () => {
             const loadedItems: PortfolioItem[] = [];
             let index = 0;
 
-            // Helper to assign patterns (Regular, Wide, Regular, Large, etc.)
             const getSize = (idx: number): PortfolioItem['size'] => {
                 const pattern = ['large', 'regular', 'regular', 'wide', 'regular', 'tall'];
                 return pattern[idx % pattern.length] as PortfolioItem['size'];
             };
-
-            // Process Videos first (often more visually striking)
             Object.entries(videos).forEach(([path, url]) => {
                 loadedItems.push({
                     id: path,
@@ -58,14 +40,13 @@ const Porto: React.FC = () => {
                 });
             });
 
-            // Process Images
             Object.entries(images).forEach(([path, url]) => {
                 loadedItems.push({
                     id: path,
                     src: url,
                     type: 'image',
                     title: formatTitle(path),
-                    scope: ['Projects'], // Default scope
+                    scope: ['Projects'],
                     category: ['Still image'],
                     industry: ['Architecture', 'Real Estate'],
                     size: getSize(index++)
@@ -95,20 +76,13 @@ const Porto: React.FC = () => {
         }
     };
 
-    // Class mapping for sizes
-    // Class mapping for sizes
-    const sizeClasses = {
-        regular: 'col-span-1 row-span-1',
-        wide: 'col-span-1 md:col-span-2 row-span-1',
-        tall: 'col-span-1 row-span-2',
-        large: 'col-span-1 md:col-span-2 row-span-2',
-    };
+
 
     return (
-        <div className="min-h-screen bg-black text-white pt-32 px-4 md:px-8 flex flex-col md:flex-row gap-8 relative">
+        <div className="min-h-screen bg-black text-white pt-24 md:pt-32 px-4 md:px-8 flex flex-col md:flex-row gap-8 relative ">
 
             {/* Sidebar Filters */}
-            <aside className="w-full md:w-64 flex-shrink-0 space-y-8 sticky top-32 h-fit z-10">
+            <aside className="w-full md:w-64 flex-shrink-0 space-y-8 relative md:sticky md:top-32 h-fit z-10">
                 <div>
                     <h1 className="text-4xl font-bold mb-8">Works</h1>
                     <h2 className="text-lg font-bold mb-4 border-b border-gray-800 pb-2">Filter</h2>
@@ -143,25 +117,51 @@ const Porto: React.FC = () => {
             </aside>
 
             {/* Grid Content */}
-            <div className="flex-1 min-h-[50vh]">
-                <motion.div layout className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[250px] md:auto-rows-[300px] grid-flow-dense">
-                    <AnimatePresence>
-                        {filteredItems.map((item) => (
-                            <motion.div
-                                key={item.id}
-                                layout
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ duration: 0.4 }}
-                                className={`relative group bg-gray-900 overflow-hidden cursor-pointer ${sizeClasses[item.size]}`}
-                                onClick={() => item.type === 'video' && setSelectedVideo(item.src)}
-                            >
-                                {item.type === 'video' ? (
-                                    <div className="w-full h-full relative">
+            <div className="flex-1 min-h-[50vh] space-y-12">
+
+                {/* Images Section */}
+                {filteredItems.some(i => i.type === 'image') && (
+                    <div className="columns-1 md:columns-3 gap-2 md:gap-4 space-y-2 md:space-y-4">
+                        <AnimatePresence>
+                            {filteredItems.filter(i => i.type === 'image').map((item) => (
+                                <motion.div
+                                    key={item.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, scale: 0.9 }}
+                                    transition={{ duration: 0.4 }}
+                                    className="relative group break-inside-avoid overflow-hidden cursor-pointer rounded-lg mb-2 md:mb-4"
+                                    onClick={() => setSelectedItem(item)}
+                                >
+                                    <img
+                                        src={item.src}
+                                        alt={item.title}
+                                        className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-700"
+                                    />
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </div>
+                )}
+
+                {/* Videos Section */}
+                {filteredItems.some(i => i.type === 'video') && (
+                    <div className="columns-1 md:columns-3 gap-2 md:gap-4 space-y-2 md:space-y-4">
+                        <AnimatePresence>
+                            {filteredItems.filter(i => i.type === 'video').map((item) => (
+                                <motion.div
+                                    key={item.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, scale: 0.9 }}
+                                    transition={{ duration: 0.4 }}
+                                    className="relative group break-inside-avoid overflow-hidden cursor-pointer rounded-lg mb-2 md:mb-4"
+                                    onClick={() => setSelectedItem(item)}
+                                >
+                                    <div className="w-full relative">
                                         <video
                                             src={item.src}
-                                            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                                            className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
                                             loop
                                             muted
                                             playsInline
@@ -177,22 +177,11 @@ const Porto: React.FC = () => {
                                             </div>
                                         </div>
                                     </div>
-                                ) : (
-                                    <img
-                                        src={item.src}
-                                        alt={item.title}
-                                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                                    />
-                                )}
-
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 pointer-events-none">
-                                    <h3 className="text-xl font-bold line-clamp-1">{item.title}</h3>
-                                    <p className="text-xs text-gray-400 uppercase tracking-widest">{item.category[0]}</p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
-                </motion.div>
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </div>
+                )}
 
                 {filteredItems.length === 0 && (
                     <div className="w-full py-20 text-center text-gray-500">
@@ -201,29 +190,38 @@ const Porto: React.FC = () => {
                 )}
             </div>
 
-            {/* Video Modal */}
+            {/* Lightbox Modal */}
             <AnimatePresence>
-                {selectedVideo && (
+                {selectedItem && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-4"
-                        onClick={() => setSelectedVideo(null)}
+                        onClick={() => setSelectedItem(null)}
                     >
-                        <div className="relative w-full max-w-6xl aspect-video bg-black rounded-lg overflow-hidden shadow-2xl border border-white/10" onClick={e => e.stopPropagation()}>
+                        <div className="relative w-full max-w-7xl h-[80vh] flex items-center justify-center" onClick={e => e.stopPropagation()}>
                             <button
-                                onClick={() => setSelectedVideo(null)}
-                                className="absolute top-4 right-4 z-10 p-2 bg-black/50 rounded-full hover:bg-white/20 transition-colors text-white"
+                                onClick={() => setSelectedItem(null)}
+                                className="absolute -top-12 right-0 z-10 p-2 text-white/50 hover:text-white transition-colors"
                             >
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                             </button>
-                            <video
-                                src={selectedVideo}
-                                className="w-full h-full object-contain"
-                                controls
-                                autoPlay
-                            />
+
+                            {selectedItem.type === 'video' ? (
+                                <video
+                                    src={selectedItem.src}
+                                    className="w-full h-full object-contain rounded-lg shadow-2xl"
+                                    controls
+                                    autoPlay
+                                />
+                            ) : (
+                                <img
+                                    src={selectedItem.src}
+                                    alt={selectedItem.title}
+                                    className="w-full h-full object-contain rounded-lg shadow-2xl"
+                                />
+                            )}
                         </div>
                     </motion.div>
                 )}

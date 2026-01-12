@@ -7,7 +7,6 @@ interface ParallaxSectionProps {
     className?: string;
 }
 
-// Reduced parallax intensity and simpler transform
 function useParallax(value: MotionValue<number>, distance: number) {
     return useTransform(value, [0, 1], [-distance, distance]);
 }
@@ -19,7 +18,6 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({ children, backgroundI
         offset: ["start end", "end start"]
     });
 
-    // Reduced distance to minimize jitter visibility
     const y = useParallax(scrollYProgress, 20);
 
     return (
@@ -27,9 +25,7 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({ children, backgroundI
             ref={ref}
             className={`sticky top-0 h-screen flex items-center justify-center overflow-hidden ${className}`}
             style={{
-                // Using a slightly more distinct shadow
                 boxShadow: '0 -4px 30px rgba(0,0,0,0.8)',
-                // Ensure proper stacking context
                 zIndex: 0
             }}
         >
@@ -38,7 +34,6 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({ children, backgroundI
                     <motion.div
                         className="w-full h-[120%] bg-cover bg-center absolute top-[-10%]"
                         style={{ y }}
-                        // Optimization hints
                         initial={{ scale: 1.05 }}
                     >
                         <div

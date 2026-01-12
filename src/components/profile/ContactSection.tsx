@@ -1,100 +1,126 @@
 import React from 'react';
 import ParallaxSection from './ParallaxSection';
 import { motion } from 'framer-motion';
-import type { Variants } from 'framer-motion';
+import { BsArrowRight } from 'react-icons/bs';
 
 const ContactSection: React.FC = () => {
-    const containerVariants: Variants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.2
-            }
-        }
-    };
-
-    const itemVariants: Variants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.6, ease: "easeOut" }
-        }
-    };
-
     return (
         <ParallaxSection backgroundImage="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672&auto=format&fit=crop">
-            <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="w-full max-w-6xl mx-auto px-6 py-20 lg:py-32 grid grid-cols-1 md:grid-cols-2 gap-16 items-start text-white"
-            >
-                {/* Left Column: Headline */}
-                <div className="md:sticky md:top-32">
-                    <motion.p variants={itemVariants} className="text-blue-500 font-mono mb-6 text-sm tracking-widest uppercase font-semibold">
-                        Get In Touch
-                    </motion.p>
-                    <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold leading-tight mb-8">
-                        Let's create something distinctive.
+            <div className="w-full h-full flex flex-col justify-between pt-20 pb-4 text-white max-w-7xl mx-auto">
+
+                {/* Top Section */}
+                <div className="flex flex-col items-start space-y-4">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="text-4xl md:text-6xl font-bold leading-tight max-w-4xl"
+                    >
+                        Let's create <br /> something distinctive.
                     </motion.h2>
-                    <motion.p variants={itemVariants} className="text-gray-400 text-lg leading-relaxed max-w-md">
-                        I am available for freelance work and open to discussing new opportunities. If you have an idea, I'd love to hear about it.
-                    </motion.p>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="space-y-4"
+                    >
+                        <p className="text-lg md:text-xl text-gray-400 max-w-xl leading-relaxed">
+                            I am available for freelance work and open to discussing new opportunities.
+                        </p>
+
+                        <div className="inline-block relative group">
+                            <a href="mailto:ombo992@gmail.com" className="text-xl md:text-2xl font-bold border-b-2 border-white pb-1 group-hover:text-gray-300 group-hover:border-gray-300 transition-colors">
+                                ombo992@gmail.com
+                            </a>
+                        </div>
+                    </motion.div>
                 </div>
 
-                {/* Right Column: Contact Details */}
-                <div className="space-y-16 bg-black/20 backdrop-blur-sm p-8 md:p-12 rounded-xl border border-white/5">
-
-                    {/* Email Section */}
-                    <motion.div variants={itemVariants}>
-                        <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">Email</h3>
-                        <a
-                            href="mailto:ombo992@gmail.com"
-                            className="text-2xl md:text-3xl font-light text-white hover:text-blue-400 transition-colors border-b border-white/20 hover:border-blue-400 pb-1 break-all"
-                        >
-                            ombo992@gmail.com
-                        </a>
-                    </motion.div>
-
+                {/* Bottom Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="w-full mt-auto"
+                >
                     {/* Links Grid */}
-                    <motion.div variants={itemVariants} className="grid grid-cols-2 gap-10">
-                        <div>
-                            <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">Connect</h3>
-                            <ul className="space-y-3 text-gray-300">
-                                <li><a href="#" className="hover:text-white transition-colors flex items-center group">LinkedIn <span className="opacity-0 group-hover:opacity-100 transition-opacity ml-2">↗</span></a></li>
-                                <li><a href="https://instagram.com/izha_al_" className="hover:text-white transition-colors flex items-center group">Instagram <span className="opacity-0 group-hover:opacity-100 transition-opacity ml-2">↗</span></a></li>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6 pt-6">
+
+                        {/* Connect */}
+                        <div className="border-t border-gray-700 pt-4">
+                            <h3 className="text-base font-bold mb-2 text-gray-400">Connect</h3>
+                            <p className="text-xs text-gray-500 mb-4 max-w-xs">
+                                Check out my social media profiles to see my daily updates.
+                            </p>
+                            <ul className="space-y-2">
+                                <li>
+                                    <a href="#" className="flex items-center group font-bold hover:text-gray-300 transition-colors text-sm">
+                                        LinkedIn <BsArrowRight className="ml-2 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://instagram.com/izha_al_" className="flex items-center group font-bold hover:text-gray-300 transition-colors text-sm">
+                                        Instagram <BsArrowRight className="ml-2 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
+                                    </a>
+                                </li>
                             </ul>
                         </div>
 
-                        <div>
-                            <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">Portfolio</h3>
-                            <ul className="space-y-3 text-gray-300">
-                                <li><a href="https://behance.net/zalzo" className="hover:text-white transition-colors flex items-center group">Behance <span className="opacity-0 group-hover:opacity-100 transition-opacity ml-2">↗</span></a></li>
-                                <li><a href="https://zalzo7.artstation.com" className="hover:text-white transition-colors flex items-center group">ArtStation <span className="opacity-0 group-hover:opacity-100 transition-opacity ml-2">↗</span></a></li>
-                                <li><a href="https://cgarchitect.com/members/ombo992" className="hover:text-white transition-colors flex items-center group">CGArchitect <span className="opacity-0 group-hover:opacity-100 transition-opacity ml-2">↗</span></a></li>
+                        {/* Portfolio */}
+                        <div className="border-t border-gray-700 pt-4">
+                            <h3 className="text-base font-bold mb-2 text-gray-400">Portfolio</h3>
+                            <p className="text-xs text-gray-500 mb-4 max-w-xs">
+                                Explore my detailed works and case studies on these platforms.
+                            </p>
+                            <ul className="space-y-2">
+                                <li>
+                                    <a href="https://behance.net/zalzo" className="flex items-center group font-bold hover:text-gray-300 transition-colors text-sm">
+                                        Behance <BsArrowRight className="ml-2 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://zalzo7.artstation.com" className="flex items-center group font-bold hover:text-gray-300 transition-colors text-sm">
+                                        ArtStation <BsArrowRight className="ml-2 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://cgarchitect.com/members/ombo992" className="flex items-center group font-bold hover:text-gray-300 transition-colors text-sm">
+                                        CGArchitect <BsArrowRight className="ml-2 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
+                                    </a>
+                                </li>
                             </ul>
                         </div>
 
-                        <div>
-                            <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">Dev</h3>
-                            <ul className="space-y-3 text-gray-300">
-                                <li><a href="https://github.com/Zhalizhal" className="hover:text-white transition-colors flex items-center group">GitHub <span className="opacity-0 group-hover:opacity-100 transition-opacity ml-2">↗</span></a></li>
+                        {/* Dev */}
+                        <div className="border-t border-gray-700 pt-4">
+                            <h3 className="text-base font-bold mb-2 text-gray-400">Development</h3>
+                            <p className="text-xs text-gray-500 mb-4 max-w-xs">
+                                Review my code repositories and open source contributions.
+                            </p>
+                            <ul className="space-y-2">
+                                <li>
+                                    <a href="https://github.com/Zhalizhal" className="flex items-center group font-bold hover:text-gray-300 transition-colors text-sm">
+                                        GitHub <BsArrowRight className="ml-2 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
+                                    </a>
+                                </li>
                             </ul>
                         </div>
-                    </motion.div>
 
-                    {/* Footer */}
-                    <motion.div variants={itemVariants} className="pt-8 border-t border-white/10 text-gray-600 text-sm font-mono">
-                        &copy; 2026 Baharuddin Izha. All rights reserved.
-                    </motion.div>
+                    </div>
 
-                </div>
+                    {/* Footer Copyright */}
+                    <div className="w-full flex justify-between text-[10px] text-gray-600 font-mono border-t border-gray-800 pt-4">
+                        <p>&copy; 2026 Baharuddin Izha Al Sya'na. All rights reserved.</p>
+                        <p>Designed with Passion.</p>
+                    </div>
 
-            </motion.div>
+                </motion.div>
+
+            </div>
         </ParallaxSection>
     );
 };
