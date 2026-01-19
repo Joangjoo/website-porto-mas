@@ -45,7 +45,7 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({ children, backgroundI
                 </div>
             )}
 
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-12 pointer-events-none">
+            <div className="relative z-10 w-full max-w-7xl px-8 md:px-12 pointer-events-none">
                 <div className="pointer-events-auto">
                     {children}
                 </div>

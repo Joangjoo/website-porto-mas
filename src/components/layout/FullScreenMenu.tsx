@@ -17,10 +17,10 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ onClose }) => {
 
     return (
         <motion.div
-            initial={{ x: '100%', opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: '100%', opacity: 0 }}
-            transition={{ type: "tween", duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-50 bg-black text-white"
         >
             {/* Top Bar with Logo and Close Button */}
@@ -45,28 +45,40 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ onClose }) => {
             </div>
 
             {/* Main Content */}
-            <div className="flex flex-col h-full px-8 md:px-20 pb-20 justify-center lg:ml-16 -translate-y-48 md:-translate-y-36">
+            <div className="flex flex-col h-full px-8 md:px-12 pb-20 justify-center -translate-y-48 md:-translate-y-36">
 
                 {/* Menu Links */}
                 <nav className="flex flex-col space-y-6 md:space-y-4 md:mb-20 mt-[-100px] z-10">
-                    <Link
-                        to="/"
-                        onClick={onClose}
-                        className="text-5xl md:text-7xl font-bold leading-tight hover:text-gray-300 transition-colors w-max"
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.0, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        About
-                    </Link>
-                    <Link
-                        to="/porto"
-                        onClick={onClose}
-                        className="text-5xl md:text-7xl font-bold leading-tight hover:text-gray-300 transition-colors w-max"
+                        <Link
+                            to="/"
+                            onClick={onClose}
+                            className="text-5xl md:text-7xl font-bold leading-tight hover:text-gray-300 transition-colors w-max block"
+                        >
+                            About
+                        </Link>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.0, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        Porto
-                    </Link>
+                        <Link
+                            to="/porto"
+                            onClick={onClose}
+                            className="text-5xl md:text-7xl font-bold leading-tight hover:text-gray-300 transition-colors w-max block"
+                        >
+                            Porto
+                        </Link>
+                    </motion.div>
                 </nav>
 
                 {/* Footer Info */}
-                <div className="w-full absolute bottom-10 left-0 px-8 md:px-20">
+                <div className="w-full absolute bottom-10 left-0 px-8 md:px-12">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 border-t border-gray-800 pt-8">
                         {/* 1. Contact */}
                         <div>

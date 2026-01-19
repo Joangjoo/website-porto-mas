@@ -8,35 +8,104 @@ const ContactSection: React.FC = () => {
         <ParallaxSection backgroundImage="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672&auto=format&fit=crop">
             <div className="w-full h-full flex flex-col justify-between pt-20 pb-4 text-white max-w-7xl mx-auto">
 
-                {/* Top Section */}
-                <div className="flex flex-col items-start space-y-4">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="text-4xl md:text-6xl font-bold leading-tight max-w-4xl"
-                    >
-                        Let's create <br /> something distinctive.
-                    </motion.h2>
+                {/* Top Section - Grid Layout */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
+                    {/* Left Side - CTA */}
+                    <div className="flex flex-col items-start space-y-4">
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="text-4xl md:text-6xl font-bold leading-tight max-w-4xl"
+                        >
+                            Let's create <br /> something distinctive.
+                        </motion.h2>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="space-y-4"
+                        >
+                            <p className="text-lg md:text-xl text-gray-400 max-w-xl leading-relaxed">
+                                I am available for freelance work and open to discussing new opportunities.
+                            </p>
+
+                            <div className="inline-block relative group">
+                                <a href="mailto:ombo992@gmail.com" className="text-xl md:text-2xl font-bold border-b-2 border-white pb-1 group-hover:text-gray-300 group-hover:border-gray-300 transition-colors">
+                                    ombo992@gmail.com
+                                </a>
+                            </div>
+                        </motion.div>
+                    </div>
+
+                    {/* Right Side - Contact Form */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="space-y-4"
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        className="w-full"
                     >
-                        <p className="text-lg md:text-xl text-gray-400 max-w-xl leading-relaxed">
-                            I am available for freelance work and open to discussing new opportunities.
-                        </p>
+                        <form className="space-y-6">
+                            {/* Name Fields */}
+                            <div>
+                                <label className="block text-sm text-gray-400 mb-3">Name (required)</label>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <input
+                                            type="text"
+                                            placeholder="First Name"
+                                            className="w-full bg-transparent border-b border-gray-700 py-2 text-white placeholder-gray-600 focus:border-white focus:outline-none transition-colors"
+                                            required
+                                        />
+                                    </div>
+                                    <div>
+                                        <input
+                                            type="text"
+                                            placeholder="Last Name"
+                                            className="w-full bg-transparent border-b border-gray-700 py-2 text-white placeholder-gray-600 focus:border-white focus:outline-none transition-colors"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div className="inline-block relative group">
-                            <a href="mailto:ombo992@gmail.com" className="text-xl md:text-2xl font-bold border-b-2 border-white pb-1 group-hover:text-gray-300 group-hover:border-gray-300 transition-colors">
-                                ombo992@gmail.com
-                            </a>
-                        </div>
+                            {/* Email Field */}
+                            <div>
+                                <label className="block text-sm text-gray-400 mb-3">Email (required)</label>
+                                <input
+                                    type="email"
+                                    className="w-full bg-transparent border-b border-gray-700 py-2 text-white placeholder-gray-600 focus:border-white focus:outline-none transition-colors"
+                                    required
+                                />
+                            </div>
+
+                            {/* Message Field */}
+                            <div>
+                                <label className="block text-sm text-gray-400 mb-3">Message (required)</label>
+                                <textarea
+                                    rows={4}
+                                    className="w-full bg-transparent border-b border-gray-700 py-2 text-white placeholder-gray-600 focus:border-white focus:outline-none transition-colors resize-none"
+                                    required
+                                ></textarea>
+                            </div>
+
+                            {/* Submit Button */}
+                            <div>
+                                <button
+                                    type="submit"
+                                    className="px-8 py-3 bg-white text-black font-bold hover:bg-gray-200 transition-colors"
+                                >
+                                    SUBMIT
+                                </button>
+                            </div>
+                        </form>
                     </motion.div>
+
                 </div>
 
                 {/* Bottom Section */}

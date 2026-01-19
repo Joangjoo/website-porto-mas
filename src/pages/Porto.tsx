@@ -35,7 +35,7 @@ const Porto: React.FC = () => {
                     title: formatTitle(path),
                     scope: ['Projects'],
                     category: ['Animation', 'Motion image'],
-                    industry: ['Media & Entertainment'],
+                    industry: ['Product Visual'],
                     size: getSize(index++)
                 });
             });
@@ -79,12 +79,12 @@ const Porto: React.FC = () => {
 
 
     return (
-        <div className="min-h-screen bg-black text-white pt-24 md:pt-32 px-4 md:px-8 flex flex-col md:flex-row gap-8 relative ">
+        <div className="min-h-screen bg-black text-white pt-24 md:pt-32 px-4 md:px-12 flex flex-col md:flex-row gap-8 relative ">
 
             {/* Sidebar Filters */}
             <aside className="w-full md:w-64 flex-shrink-0 space-y-8 relative md:sticky md:top-32 h-fit z-10">
                 <div>
-                    <h1 className="text-4xl font-bold mb-8">Works</h1>
+                    <h1 className="text-4xl font-bold mb-8 ">Works</h1>
                     <h2 className="text-lg font-bold mb-4 border-b border-gray-800 pb-2">Filter</h2>
                 </div>
 
@@ -92,7 +92,7 @@ const Porto: React.FC = () => {
                 {[
                     { label: 'Scope', options: ['Projects'], state: selectedScopes, setter: setSelectedScopes },
                     { label: 'Type', options: ['Still image', 'Animation'], state: selectedTypes, setter: setSelectedTypes },
-                    { label: 'Industry', options: ['Architecture', 'Media & Entertainment'], state: selectedIndustries, setter: setSelectedIndustries },
+                    { label: 'Industry', options: ['Architecture', 'Product Visual'], state: selectedIndustries, setter: setSelectedIndustries },
                 ].map((group, groupIdx) => (
                     <div key={groupIdx}>
                         <h3 className="text-gray-500 text-sm mb-3">{group.label}</h3>

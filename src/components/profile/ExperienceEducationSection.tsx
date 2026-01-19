@@ -20,8 +20,8 @@ const ExperienceEducationSection: React.FC = () => {
                     className="text-white w-full"
                 >
                     <div className="mb-4">
-                        <span className="block text-[10px] tracking-widest mb-1 lg:mt-5 text-gray-400">INTRODUCTION</span>
-                        <h2 className="text-2xl md:text-4xl font-bold max-w-4xl leading-none">
+                        <span className="block text-[10px] 2xl:text-xs tracking-widest mb-1 lg:mt-5 text-gray-400">INTRODUCTION</span>
+                        <h2 className="text-2xl md:text-4xl 2xl:text-5xl font-bold max-w-4xl leading-none">
                             EDUCATION & <br />
                             PROFESSIONAL EXPERIENCES
                         </h2>
@@ -31,61 +31,61 @@ const ExperienceEducationSection: React.FC = () => {
 
                         {/* Education Column */}
                         <div>
-                            <h3 className="text-sm font-bold mb-3 uppercase tracking-wider border-b border-gray-700 pb-1 inline-block">Education</h3>
+                            <h3 className="text-sm 2xl:text-base font-bold mb-3 uppercase tracking-wider border-b border-gray-700 pb-1 inline-block">Education</h3>
                             <div className="space-y-3">
                                 <div>
-                                    <h4 className="text-sm font-bold">Vocational High School 1 Lamongan</h4>
-                                    <p className="text-[10px] md:text-xs text-gray-400">Multimedia Department</p>
+                                    <h4 className="text-sm 2xl:text-base font-bold">Vocational High School 1 Lamongan</h4>
+                                    <p className="text-[10px] md:text-xs 2xl:text-sm text-gray-400">Multimedia Department</p>
                                 </div>
                                 <div>
-                                    <h4 className="text-sm font-bold">Ahmad Dahlan University</h4>
-                                    <p className="text-[10px] md:text-xs text-gray-400">Bachelor of Information Technology</p>
+                                    <h4 className="text-sm 2xl:text-base font-bold">Ahmad Dahlan University</h4>
+                                    <p className="text-[10px] md:text-xs 2xl:text-sm text-gray-400">Bachelor of Information Technology</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Experience Column */}
                         <div className='lg:ml-12'>
-                            <h3 className="text-sm font-bold mb-3 uppercase tracking-wider border-b border-gray-700 pb-1 inline-block">Work Experience</h3>
+                            <h3 className="text-sm 2xl:text-base font-bold mb-3 uppercase tracking-wider border-b border-gray-700 pb-1 inline-block">Work Experience</h3>
                             <div className="space-y-2">
                                 {/* 1. Deltaview */}
                                 <div>
-                                    <h4 className="text-sm font-bold">Deltaview Cito</h4>
-                                    <p className="text-[10px] md:text-xs text-gray-400">Graphic Design (2016)</p>
+                                    <h4 className="text-sm 2xl:text-base font-bold">Deltaview Cito</h4>
+                                    <p className="text-[10px] md:text-xs 2xl:text-sm text-gray-400">Graphic Design (2016)</p>
                                 </div>
 
                                 {/* 2. Computer Lab */}
                                 <div>
-                                    <h4 className="text-sm font-bold">Computer Lab - UAD</h4>
-                                    <p className="text-[10px] md:text-xs text-gray-400">Assistant for Database, Statistics, Web Engineering, Multimedia</p>
+                                    <h4 className="text-sm 2xl:text-base font-bold">Computer Lab - UAD</h4>
+                                    <p className="text-[10px] md:text-xs 2xl:text-sm text-gray-400">Assistant for Database, Statistics, Web Engineering, Multimedia</p>
                                 </div>
 
                                 {/* 3. Svein */}
                                 <div className="space-y-1">
                                     <div>
-                                        <h4 className="text-sm font-bold">Svein Indonesia</h4>
-                                        <p className="text-[10px] md:text-xs text-gray-400">Asistant Project Manager & Leader Animation (2024 - 2025)</p>
+                                        <h4 className="text-sm 2xl:text-base font-bold">Svein Indonesia</h4>
+                                        <p className="text-[10px] md:text-xs 2xl:text-sm text-gray-400">Asistant Project Manager & Leader Animation (2024 - 2025)</p>
                                     </div>
                                     <div>
-                                        <h4 className="text-sm font-bold">Svein Indonesia</h4>
-                                        <p className="text-[10px] md:text-xs text-gray-400">3D Animator (2023 - 2025)</p>
+                                        <h4 className="text-sm 2xl:text-base font-bold">Svein Indonesia</h4>
+                                        <p className="text-[10px] md:text-xs 2xl:text-sm text-gray-400">3D Animator (2023 - 2025)</p>
                                     </div>
                                     <div>
-                                        <h4 className="text-sm font-bold">Svein Indonesia</h4>
-                                        <p className="text-[10px] md:text-xs text-gray-400">3D Artist (2022 - 2025)</p>
+                                        <h4 className="text-sm 2xl:text-base font-bold">Svein Indonesia</h4>
+                                        <p className="text-[10px] md:text-xs 2xl:text-sm text-gray-400">3D Artist (2022 - 2025)</p>
                                     </div>
                                 </div>
 
                                 {/* 4. Taksu Visual */}
                                 <div>
-                                    <h4 className="text-sm font-bold">Taksu Visual</h4>
-                                    <p className="text-[10px] md:text-xs text-gray-400">3D Visualizer (2025)</p>
+                                    <h4 className="text-sm 2xl:text-base font-bold">Taksu Visual</h4>
+                                    <p className="text-[10px] md:text-xs 2xl:text-sm text-gray-400">3D Visualizer (2025)</p>
                                 </div>
 
                                 {/* 5. Freelance */}
                                 <div>
-                                    <h4 className="text-sm font-bold">Freelance</h4>
-                                    <p className="text-[10px] md:text-xs text-gray-400">3D Artist (2025)</p>
+                                    <h4 className="text-sm 2xl:text-base font-bold">Freelance</h4>
+                                    <p className="text-[10px] md:text-xs 2xl:text-sm text-gray-400">3D Artist (2025)</p>
                                 </div>
                             </div>
                         </div>
@@ -99,13 +99,13 @@ const ExperienceEducationSection: React.FC = () => {
 
                     {/* Left Side */}
                     <div className="flex flex-col gap-1 items-start lg:mt-6">
-                        <h3 className="text-base font-bold mb-2">Open to Collaboration!!!</h3>
+                        <h3 className="text-base 2xl:text-lg font-bold mb-2">Open to Collaboration!!!</h3>
 
                         <div className="mb-2">
-                            <img src={zstu} alt="Z Studio" className="h-12 w-auto object-contain" />
+                            <img src={zstu} alt="Z Studio" className="h-12 2xl:h-16 w-auto object-contain" />
                         </div>
 
-                        <div className="text-[10px] text-gray-400 space-y-0.5 flex flex-col">
+                        <div className="text-[10px] 2xl:text-xs text-gray-400 space-y-0.5 flex flex-col">
                             <p className="font-bold text-white uppercase tracking-wider mb-1">Z Studio</p>
 
                             <p className="mt-1">Instagram</p>
@@ -115,7 +115,7 @@ const ExperienceEducationSection: React.FC = () => {
                     </div>
 
                     {/* Right Side */}
-                    <div className="text-[10px] uppercase tracking-widest text-right mb-0 lg:-translate-y-10">
+                    <div className="text-[10px] 2xl:text-xs uppercase tracking-widest text-right mb-0 lg:-translate-y-10">
                         <span className="font-bold text-white">PORTFOLIO</span>
                         <span className="text-gray-500 mx-2">|</span>
                         <span className="text-gray-300">Baharuddin Izha Al S.</span>

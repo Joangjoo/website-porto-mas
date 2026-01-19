@@ -6,7 +6,7 @@ const HeroSection: React.FC = () => {
     return (
         <ParallaxSection
             backgroundImage="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop"
-            className="!items-end pb-20 md:pb-32"
+            className="!items-end !justify-start pb-20 md:pb-32"
         >
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
@@ -16,7 +16,7 @@ const HeroSection: React.FC = () => {
                 className="text-left w-full"
             >
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-6 text-white leading-[1.1]">
-                    Baharuddin Izha <br />
+                    Baharuddin Izha
                     Al Sya'na (Izhal)
                 </h1>
                 <p className="text-lg md:text-xl text-gray-300 max-w-xl leading-relaxed font-normal">
