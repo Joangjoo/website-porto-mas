@@ -1,9 +1,37 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import ParallaxSection from './ParallaxSection';
 import { motion } from 'framer-motion';
 import { BsArrowRight } from 'react-icons/bs';
+import emailjs from '@emailjs/browser';
+import toast from 'react-hot-toast';
 
 const ContactSection: React.FC = () => {
+    const formRef = useRef<HTMLFormElement>(null);
+    const [loading, setLoading] = useState(false);
+
+    const sendEmail = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!formRef.current) return;
+
+        setLoading(true);
+
+        emailjs
+            .sendForm(
+                import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                formRef.current,
+                import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+            )
+            .then(() => {
+                toast.success('Message sent successfully!');
+                formRef.current?.reset();
+            })
+            .catch((error) => {
+                console.error(error);
+                toast.error('Failed to send message');
+            })
+            .finally(() => setLoading(false));
+    };
     return (
         <ParallaxSection backgroundImage="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672&auto=format&fit=crop">
             <div className="w-full h-full flex flex-col justify-between pt-20 pb-4 text-white max-w-7xl mx-auto">
@@ -50,7 +78,10 @@ const ContactSection: React.FC = () => {
                         transition={{ duration: 0.8, delay: 0.3 }}
                         className="w-full"
                     >
-                        <form className="space-y-6">
+                        <form
+                            ref={formRef}
+                            onSubmit={sendEmail}
+                            className="space-y-6">
                             {/* Name Fields */}
                             <div>
                                 <label className="block text-sm text-gray-400 mb-3">Name (required)</label>
@@ -59,6 +90,7 @@ const ContactSection: React.FC = () => {
                                         <input
                                             type="text"
                                             placeholder="First Name"
+                                            name='from_name'
                                             className="w-full bg-transparent border-b border-gray-700 py-2 text-white placeholder-gray-600 focus:border-white focus:outline-none transition-colors"
                                             required
                                         />
@@ -67,6 +99,7 @@ const ContactSection: React.FC = () => {
                                         <input
                                             type="text"
                                             placeholder="Last Name"
+                                            name='from_name'
                                             className="w-full bg-transparent border-b border-gray-700 py-2 text-white placeholder-gray-600 focus:border-white focus:outline-none transition-colors"
                                             required
                                         />
@@ -79,6 +112,7 @@ const ContactSection: React.FC = () => {
                                 <label className="block text-sm text-gray-400 mb-3">Email (required)</label>
                                 <input
                                     type="email"
+                                    name='from_email'
                                     className="w-full bg-transparent border-b border-gray-700 py-2 text-white placeholder-gray-600 focus:border-white focus:outline-none transition-colors"
                                     required
                                 />
@@ -89,6 +123,7 @@ const ContactSection: React.FC = () => {
                                 <label className="block text-sm text-gray-400 mb-3">Message (required)</label>
                                 <textarea
                                     rows={4}
+                                    name='message'
                                     className="w-full bg-transparent border-b border-gray-700 py-2 text-white placeholder-gray-600 focus:border-white focus:outline-none transition-colors resize-none"
                                     required
                                 ></textarea>
@@ -98,9 +133,10 @@ const ContactSection: React.FC = () => {
                             <div>
                                 <button
                                     type="submit"
-                                    className="px-8 py-3 bg-white text-black font-bold hover:bg-gray-200 transition-colors"
+                                    disabled={loading}
+                                    className="px-8 py-3 bg-white text-black font-bold hover:bg-gray-200 disabled:opacity-50 transition-colors"
                                 >
-                                    SUBMIT
+                                    {loading ? 'SENDING...' : 'SUBMIT'}
                                 </button>
                             </div>
                         </form>

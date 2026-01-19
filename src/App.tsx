@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import Navbar from './components/layout/Navbar';
 import Profile from './pages/Profile';
 import Porto from './pages/Porto';
@@ -14,6 +15,15 @@ function App() {
             <Route path="/porto" element={<Porto />} />
           </Routes>
         </main>
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            style: {
+              background: '#333',
+              color: '#fff',
+            },
+          }}
+        />
       </div>
     </Router>
   )
